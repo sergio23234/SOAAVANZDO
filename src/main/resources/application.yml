@@ -1,0 +1,77 @@
+server:
+  servlet:
+    context-path: 
+  port: 8080
+spring:
+  application:
+    name: ayd1-proyectoclase-api
+  profiles.active: production
+  jmx:
+    enabled: false
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: sqladmin
+    driver-class-name:  org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-test-query: SELECT 1
+      maximum-pool-size: 10
+      minimum-idle: 0
+      connection-timeout: 10000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: public
+        format_sql: true
+        show_sql: false
+        auditable: true
+        proc:
+            param_null_passing: true
+        jdbc:
+            lob:
+                non_contextual_creation: true              
+#logging:
+#  level:
+#    org.springframework.transaction.interceptor: TRACE
+#    org.hibernate.SQL: debug
+#    org.hibernate.type: trace
+---
+spring:
+  profiles: production
+  datasource:
+    url: jdbc:postgresql://analisis-1.c8wnpvybveih.us-east-1.rds.amazonaws.com:5432/proyectoclase
+    username: postgres
+    password: analisis1
+    driver-class-name:  org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-test-query: SELECT 1
+      maximum-pool-size: 10
+      minimum-idle: 0
+      connection-timeout: 10000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: public
+        format_sql: true
+        show_sql: false
+        auditable: true
+        proc:
+            param_null_passing: true
+        jdbc:
+            lob:
+                non_contextual_creation: true 
