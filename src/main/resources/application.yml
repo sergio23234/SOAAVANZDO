@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: 
+    context-path: /ayd-api
   port: 8080
 spring:
   application:
